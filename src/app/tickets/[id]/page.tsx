@@ -1,3 +1,4 @@
+import { initialTickets } from "@/app/data";
 import React from "react";
 
 type TicketParams = {
@@ -7,7 +8,13 @@ type TicketParams = {
 };
 
 const Ticket = ({ params }: TicketParams) => {
-  return <div>Ticket : {params.id}</div>;
+  const ticket = initialTickets.find((ticket) => ticket.id === params.id);
+  return (
+    <div>
+      <p>{ticket?.content}</p>
+      <p>{ticket?.status}</p>
+    </div>
+  );
 };
 
 export default Ticket;
