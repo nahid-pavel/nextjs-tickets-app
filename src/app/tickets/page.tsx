@@ -1,5 +1,5 @@
 import React from "react";
-import { initialTickets } from "../data";
+import { initialTickets } from "@/app/data";
 import Link from "next/link";
 
 const Tickets = () => {
@@ -8,7 +8,9 @@ const Tickets = () => {
       <div key={item?.id}>
         <p>{item?.title}</p>
 
-        <Link href={`/tickets/${item?.id}`}>View</Link>
+        <Link href={`/tickets/${item?.id}`} className="underline">
+          View
+        </Link>
       </div>
     );
   });
