@@ -6,13 +6,19 @@ type TicketParams = {
     id: string;
   };
 };
-
+const TICKET_ICONS = {
+  OPEN: "O",
+  DONE: "X",
+};
 const Ticket = ({ params }: TicketParams) => {
-  const ticket = initialTickets.find((ticket) => ticket.id === params.id);
+  const ticket = initialTickets?.find((ticket) => ticket.id === params.id);
+  if (!ticket) {
+    return "No Tickets Found";
+  }
   return (
     <div>
+      <p>{TICKET_ICONS[ticket?.status]}</p>
       <p>{ticket?.content}</p>
-      <p>{ticket?.status}</p>
     </div>
   );
 };

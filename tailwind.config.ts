@@ -12,6 +12,15 @@ export default {
         background: "var(--background)",
         foreground: "var(--foreground)",
       },
+      keyframes: {
+        "fade-in-from-top": {
+          from: { opacity: "0", transform: "translateY(-16px)" },
+          to: { opacity: "1", transform: "translateY(0px)" },
+        },
+      },
+      animation: {
+        "fade-in-from-top": "fade-in-from-top 0.3s ease-out",
+      },
     },
   },
   plugins: [],

@@ -1,6 +1,7 @@
 import React from "react";
 import { initialTickets } from "@/app/data";
 import Link from "next/link";
+import clsx from "clsx";
 
 const Tickets = () => {
   return (
@@ -9,7 +10,7 @@ const Tickets = () => {
         <p className="text-3xl font-bold tracking-tighter">Tickets Page</p>
         <p className="text-sm text-muted-foreground">This is for ticket page</p>
       </div>
-      <div className="flex flex-1 flex-col items-center gap-y-5">
+      <div className="flex flex-1 flex-col items-center gap-y-5 animate-fade-in-from-top">
         {initialTickets.map((item) => {
           return (
             <div
@@ -17,7 +18,13 @@ const Tickets = () => {
               className="max-w-[450px] p-6 border border-slate-400 border-rounded w-full"
             >
               <h3 className="text-lg font-semibold">{item?.title}</h3>
-              <p className="truncate text-slate-700">{item?.content}</p>
+              <p
+                className={clsx("truncate text-slate-700 text-sm", {
+                  "line-through": item?.status === "DONE",
+                })}
+              >
+                {item?.content}
+              </p>
 
               <Link href={`/tickets/${item?.id}`} className="underline">
                 View

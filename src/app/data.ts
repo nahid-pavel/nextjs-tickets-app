@@ -1,4 +1,13 @@
-export const initialTickets = [
+interface Tickets {
+  id: string;
+  title: string;
+  content: string;
+  status: TicketStatus;
+}
+
+export type TicketStatus = "DONE" | "OPEN";
+
+export const initialTickets: Tickets[] = [
   {
     id: "1",
     title: "Ticket 1",
