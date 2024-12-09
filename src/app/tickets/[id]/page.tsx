@@ -1,4 +1,7 @@
 import { initialTickets } from "@/app/data";
+
+import { faBoxArchive, faBoxOpen } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
 
 type TicketParams = {
@@ -7,11 +10,21 @@ type TicketParams = {
   };
 };
 const TICKET_ICONS = {
-  OPEN: "O",
-  DONE: "X",
+  OPEN: (
+    <FontAwesomeIcon
+      icon={faBoxOpen}
+      style={{ fontSize: "1rem", width: "1rem", height: "1rem" }}
+    />
+  ),
+  DONE: (
+    <FontAwesomeIcon
+      icon={faBoxArchive}
+      style={{ fontSize: "1rem", width: "1rem", height: "1rem" }}
+    />
+  ),
 };
 const Ticket = ({ params }: TicketParams) => {
-  const ticket = initialTickets?.find((ticket) => ticket.id === params.id);
+  const ticket = initialTickets?.find((ticket) => ticket?.id === params?.id);
   if (!ticket) {
     return "No Tickets Found";
   }
