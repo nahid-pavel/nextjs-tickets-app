@@ -5,9 +5,9 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
 
 type TicketParams = {
-  params: {
+  params: Promise<{
     id: string;
-  };
+  }>;
 };
 const TICKET_ICONS = {
   OPEN: (
@@ -23,8 +23,9 @@ const TICKET_ICONS = {
     />
   ),
 };
-const Ticket = ({ params }: TicketParams) => {
-  const ticket = initialTickets?.find((ticket) => ticket?.id === params?.id);
+const Ticket = async ({ params }: TicketParams) => {
+  const { id } = await params;
+  const ticket = initialTickets?.find((ticket) => ticket.id === id);
   if (!ticket) {
     return "No Tickets Found";
   }
