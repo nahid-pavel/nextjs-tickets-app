@@ -2,6 +2,9 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
 import Link from "next/link";
+import { buttonVariants } from "@/components/ui/button";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faHome } from "@fortawesome/free-solid-svg-icons";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -31,12 +34,20 @@ export default function RootLayout({
       >
         <nav className="flex justify-between py-2.5 px-5 border-b fixed left-0 right-0  z-20 top-0 w-full bg-background/95 backdrop-blur">
           <div>
-            <Link href="/" className="text-lg font-bold">
-              Home
+            <Link
+              href="/"
+              // className="text-lg font-bold"
+              className={buttonVariants({ variant: "ghost" })}
+            >
+              <FontAwesomeIcon icon={faHome} />
+              <span className="text-lg font-semibold">Home</span>
             </Link>
           </div>
           <div>
-            <Link href="/tickets" className="text-sm underline">
+            <Link
+              href="/tickets"
+              className={buttonVariants({ variant: "outline" })}
+            >
               Tickets
             </Link>
           </div>

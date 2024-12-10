@@ -1,6 +1,12 @@
 import { initialTickets } from "@/app/data";
 
-import { faBoxArchive, faBoxOpen } from "@fortawesome/free-solid-svg-icons";
+import {
+  faBoxArchive,
+  faBoxOpen,
+  faCheckCircle,
+} from "@fortawesome/free-solid-svg-icons";
+import { faFile } from "@fortawesome/free-solid-svg-icons/faFile";
+import { faPencil } from "@fortawesome/free-solid-svg-icons/faPencil";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
 
@@ -9,16 +15,22 @@ type TicketParams = {
     id: string;
   }>;
 };
-const TICKET_ICONS = {
+export const TICKET_ICONS = {
   OPEN: (
     <FontAwesomeIcon
-      icon={faBoxOpen}
+      icon={faFile}
       style={{ fontSize: "1rem", width: "1rem", height: "1rem" }}
     />
   ),
   DONE: (
     <FontAwesomeIcon
-      icon={faBoxArchive}
+      icon={faCheckCircle}
+      style={{ fontSize: "1rem", width: "1rem", height: "1rem" }}
+    />
+  ),
+  INPROGRESS: (
+    <FontAwesomeIcon
+      icon={faPencil}
       style={{ fontSize: "1rem", width: "1rem", height: "1rem" }}
     />
   ),

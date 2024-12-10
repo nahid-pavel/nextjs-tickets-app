@@ -1,3 +1,4 @@
+import { Separator } from "@radix-ui/react-separator";
 import Link from "next/link";
 
 export default function Home() {
@@ -7,6 +8,7 @@ export default function Home() {
         <p className="text-3xl font-bold tracking-tighter">HomePage</p>
         <p className="text-sm text-muted-foreground">This is for home page</p>
       </div>
+      <Separator />
 
       <div className="flex flex-1 flex-col items-center">
         <Link href={"/tickets"} className="underline">

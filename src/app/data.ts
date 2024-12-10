@@ -5,7 +5,7 @@ interface Tickets {
   status: TicketStatus;
 }
 
-export type TicketStatus = "DONE" | "OPEN";
+export type TicketStatus = "DONE" | "OPEN" | "INPROGRESS";
 
 export const initialTickets: Tickets[] = [
   {
@@ -19,5 +19,11 @@ export const initialTickets: Tickets[] = [
     title: "Ticket 2",
     content: "Ticket 2 content",
     status: "OPEN",
+  },
+  {
+    id: "3",
+    title: "Ticket 3",
+    content: "Ticket 3 content",
+    status: "INPROGRESS",
   },
 ];
