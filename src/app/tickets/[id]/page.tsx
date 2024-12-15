@@ -1,13 +1,11 @@
-import { initialTickets } from "@/app/data";
+import { TicketItem } from "@/app/features/ticket/components/ticket-item";
 
-import {
-  faBoxArchive,
-  faBoxOpen,
-  faCheckCircle,
-} from "@fortawesome/free-solid-svg-icons";
-import { faFile } from "@fortawesome/free-solid-svg-icons/faFile";
-import { faPencil } from "@fortawesome/free-solid-svg-icons/faPencil";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { initialTickets } from "@/app/features/ticket/types";
+import { Placeholder } from "@/components/Placeholder";
+import { Button } from "@/components/ui/button";
+
+import Link from "next/link";
+
 import React from "react";
 
 type TicketParams = {
@@ -15,36 +13,28 @@ type TicketParams = {
     id: string;
   }>;
 };
-export const TICKET_ICONS = {
-  OPEN: (
-    <FontAwesomeIcon
-      icon={faFile}
-      style={{ fontSize: "1rem", width: "1rem", height: "1rem" }}
-    />
-  ),
-  DONE: (
-    <FontAwesomeIcon
-      icon={faCheckCircle}
-      style={{ fontSize: "1rem", width: "1rem", height: "1rem" }}
-    />
-  ),
-  INPROGRESS: (
-    <FontAwesomeIcon
-      icon={faPencil}
-      style={{ fontSize: "1rem", width: "1rem", height: "1rem" }}
-    />
-  ),
-};
+
 const Ticket = async ({ params }: TicketParams) => {
   const { id } = await params;
   const ticket = initialTickets?.find((ticket) => ticket.id === id);
   if (!ticket) {
-    return "No Tickets Found";
+    return (
+      <div className="flex flex-1">
+        <Placeholder
+          label="No tickets found"
+          button={
+            <Button asChild variant="outline">
+              <Link href="/tickets">Go to Tickets</Link>
+            </Button>
+          }
+        />
+        <Placeholder label="No tickets found" />
+      </div>
+    );
   }
   return (
-    <div>
-      <p>{TICKET_ICONS[ticket?.status]}</p>
-      <p>{ticket?.content}</p>
+    <div className="flex flex-col items-center justify-center">
+      <TicketItem ticket={ticket} />
     </div>
   );
 };
