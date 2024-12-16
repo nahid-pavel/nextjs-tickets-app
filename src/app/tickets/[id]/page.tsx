@@ -34,7 +34,7 @@ const Ticket = async ({ params }: TicketParams) => {
   }
   return (
     <div className="flex flex-col items-center justify-center">
-      <TicketItem ticket={ticket} />
+      <TicketItem ticket={ticket} isDetail={false} />
     </div>
   );
 };

@@ -1,10 +1,8 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
-import Link from "next/link";
-import { buttonVariants } from "@/components/ui/button";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faHome } from "@fortawesome/free-solid-svg-icons";
+import { ThemeProvider } from "@/components/theme/theme-provider";
+import { Header } from "@/components/Header";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -28,33 +26,16 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <nav className="flex justify-between py-2.5 px-5 border-b fixed left-0 right-0  z-20 top-0 w-full bg-background/95 backdrop-blur">
-          <div>
-            <Link
-              href="/"
-              // className="text-lg font-bold"
-              className={buttonVariants({ variant: "ghost" })}
-            >
-              <FontAwesomeIcon icon={faHome} />
-              <span className="text-lg font-semibold">Home</span>
-            </Link>
-          </div>
-          <div>
-            <Link
-              href="/tickets"
-              className={buttonVariants({ variant: "outline" })}
-            >
-              Tickets
-            </Link>
-          </div>
-        </nav>
-        <main className="py-24 px-8 bg-secondary/20 min-h-screen flex-1 flex flex-col overflow-y-auto overflow-x-hidden">
-          {children}
-        </main>
+        <ThemeProvider>
+          <Header />
+          <main className="py-24 px-8 bg-secondary/20 min-h-screen flex-1 flex flex-col overflow-y-auto overflow-x-hidden">
+            {children}
+          </main>
+        </ThemeProvider>
       </body>
     </html>
   );

@@ -11,7 +11,7 @@ const Tickets = () => {
 
       <div className="flex flex-1 flex-col items-center gap-y-5 animate-fade-in-from-top">
         {initialTickets.map((item) => {
-          return <TicketItem ticket={item} key={item.id} />;
+          return <TicketItem ticket={item} key={item.id} isDetail={true} />;
         })}
         ;
       </div>

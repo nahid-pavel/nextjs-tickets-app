@@ -17,9 +17,10 @@ import { faExternalLink } from "@fortawesome/free-solid-svg-icons";
 
 interface TicketProps {
   ticket: Tickets;
+  isDetail?: boolean;
 }
 
-export const TicketItem = ({ ticket }: TicketProps) => {
+export const TicketItem = ({ ticket, isDetail }: TicketProps) => {
   const buttonVariants = (
     <Button variant="outline" asChild size="icon">
       <Link href={`/tickets/${ticket?.id}`}>
@@ -29,7 +30,12 @@ export const TicketItem = ({ ticket }: TicketProps) => {
   );
 
   return (
-    <div className="max-w-[450px]  w-full flex gap-x-1 ">
+    <div
+      className={clsx("w-full flex gap-x-1 animate-fade-in-from-top", {
+        "max-w-[450px]": isDetail,
+        "max-w-[600px]": !isDetail,
+      })}
+    >
       <Card key={ticket?.id} className="w-full">
         <CardHeader className="flex gap-x-3">
           <CardTitle className="flex gap-x-3">
@@ -37,16 +43,21 @@ export const TicketItem = ({ ticket }: TicketProps) => {
             <span>{ticket?.title}</span>
           </CardTitle>
         </CardHeader>
-        <CardContent
-          className={clsx("line-clamp-3", {
-            "line-through": ticket?.status === "DONE",
-          })}
-        >
-          <span>{ticket?.content}</span>
+        <CardContent>
+          <span
+            className={clsx("whitespace-break-spaces", {
+              "line-through": ticket?.status === "DONE",
+              "line-clamp-3 ": isDetail,
+            })}
+          >
+            {ticket?.content}
+          </span>
         </CardContent>
         <CardFooter></CardFooter>
       </Card>
-      <div className="flex  flex-col gap-y-1">{buttonVariants}</div>
+      <div className="flex  flex-col gap-y-1">
+        {!isDetail ? null : buttonVariants}
+      </div>
     </div>
   );
 };
