@@ -1,20 +1,17 @@
-import React from "react";
+import React, { Suspense } from "react";
 
 import { Heading } from "@/components/Heading";
-import { TicketItem } from "../features/ticket/components/ticket-item";
-import { initialTickets } from "../features/ticket/types";
+import { TicketList } from "../features/ticket/components/ticket-list";
+import { LoadingSpinner } from "../features/ticket/components/LoadingSpinner";
 
-const Tickets = () => {
+const Tickets = async () => {
   return (
     <div className="flex flex-1 flex-col gap-y-8">
       <Heading title="Tickets Page" description="This is Ticket Page" />
 
-      <div className="flex flex-1 flex-col items-center gap-y-5 animate-fade-in-from-top">
-        {initialTickets.map((item) => {
-          return <TicketItem ticket={item} key={item.id} isDetail={true} />;
-        })}
-        ;
-      </div>
+      <Suspense fallback={<LoadingSpinner />}>
+        <TicketList />
+      </Suspense>
     </div>
   );
 };
