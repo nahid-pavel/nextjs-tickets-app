@@ -14,6 +14,7 @@ import { Tickets } from "../types";
 import { TICKET_ICONS } from "../constants";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faExternalLink } from "@fortawesome/free-solid-svg-icons";
+import { TicketStatus } from "@prisma/client";
 
 interface TicketProps {
   ticket: Tickets;
@@ -39,7 +40,7 @@ export const TicketItem = ({ ticket, isDetail }: TicketProps) => {
       <Card key={ticket?.id} className="w-full">
         <CardHeader className="flex gap-x-3">
           <CardTitle className="flex gap-x-3">
-            <span>{TICKET_ICONS[ticket?.status]}</span>
+            <span>{TICKET_ICONS[ticket?.status as TicketStatus]}</span>
             <span>{ticket?.title}</span>
           </CardTitle>
         </CardHeader>

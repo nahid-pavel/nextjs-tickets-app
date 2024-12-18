@@ -18,7 +18,7 @@ export const TICKET_ICONS = {
       style={{ fontSize: "1rem", width: "1rem", height: "1rem" }}
     />
   ),
-  INPROGRESS: (
+  IN_PROGRESS: (
     <FontAwesomeIcon
       icon={faPencil}
       style={{ fontSize: "1rem", width: "1rem", height: "1rem" }}
