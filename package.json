@@ -9,7 +9,8 @@
     "lint": "next lint",
     "type": "tsc --noEmit",
     "postinstall": "prisma generate",
-    "prisma-seed": "tsx prisma/seed.ts"
+    "prisma-seed": "tsx prisma/seed.ts",
+    "prismaDev": "dotenv -e .env.local prisma migrate dev "
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "latest",
@@ -21,6 +22,7 @@
     "@radix-ui/react-slot": "^1.1.0",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
+    "dotenv-cli": "^8.0.0",
     "lucide-react": "^0.468.0",
     "next": "15.0.3",
     "next-themes": "^0.4.4",
