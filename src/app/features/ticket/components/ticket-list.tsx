@@ -9,7 +9,6 @@ export const TicketList = async () => {
       {tickets.map((item) => {
         return <TicketItem ticket={item} key={item.id} isDetail={true} />;
       })}
-      ;
     </div>
   );
 };
