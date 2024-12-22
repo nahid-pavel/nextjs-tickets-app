@@ -13,7 +13,11 @@ import React from "react";
 import { Tickets } from "../types";
 import { TICKET_ICONS } from "../constants";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faExternalLink, faTrash } from "@fortawesome/free-solid-svg-icons";
+import {
+  faEdit,
+  faExternalLink,
+  faTrash,
+} from "@fortawesome/free-solid-svg-icons";
 import { TicketStatus } from "@prisma/client";
 import { deleteTicket } from "../actions/delete-ticket";
 
@@ -27,6 +31,14 @@ export const TicketItem = ({ ticket, isDetail }: TicketProps) => {
     <Button variant="outline" asChild size="icon">
       <Link href={`/tickets/${ticket?.id}`}>
         <FontAwesomeIcon icon={faExternalLink} />
+      </Link>
+    </Button>
+  );
+
+  const editButton = (
+    <Button variant="outline" asChild size="icon">
+      <Link prefetch href={`/tickets/${ticket?.id}/edit`}>
+        <FontAwesomeIcon icon={faEdit} />
       </Link>
     </Button>
   );
@@ -69,7 +81,17 @@ export const TicketItem = ({ ticket, isDetail }: TicketProps) => {
         <CardFooter></CardFooter>
       </Card>
       <div className="flex  flex-col gap-y-1">
-        {!isDetail ? deleteButton : buttonVariants}
+        {!isDetail ? (
+          <>
+            {deleteButton}
+            {editButton}
+          </>
+        ) : (
+          <>
+            {buttonVariants}
+            {editButton}
+          </>
+        )}
       </div>
     </div>
   );
