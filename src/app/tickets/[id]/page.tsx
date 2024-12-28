@@ -18,9 +18,11 @@ const Ticket = async ({ params }: TicketParams) => {
     return notFound();
   }
   return (
-    <div className="flex flex-col items-center justify-center">
-      <TicketItem ticket={ticket} isDetail={false} />
-    </div>
+    <>
+      <div className="flex flex-col items-center justify-center">
+        <TicketItem ticket={ticket} isDetail={false} />
+      </div>{" "}
+    </>
   );
 };
 
