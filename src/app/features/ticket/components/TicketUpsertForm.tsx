@@ -20,7 +20,7 @@ interface UpdateParams {
   ticket?: Ticket | null;
 }
 
-const SubmitButton = ({ label }: { label: string }) => {
+export const SubmitButton = ({ label }: { label: string }) => {
   const { pending } = useFormStatus();
   return (
     <Button type="submit" disabled={pending}>

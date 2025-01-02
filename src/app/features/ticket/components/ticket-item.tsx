@@ -14,12 +14,12 @@ import { Tickets } from "../types";
 import { TICKET_ICONS } from "../constants";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
+  faCaretDown,
   faEdit,
   faExternalLink,
-  faTrash,
 } from "@fortawesome/free-solid-svg-icons";
-import { TicketStatus } from "@prisma/client";
-import { deleteTicket } from "../actions/delete-ticket";
+import { Ticket, TicketStatus } from "@prisma/client";
+import { TicketMoreMenu } from "./TiketMoreMenu";
 
 interface TicketProps {
   ticket: Tickets;
@@ -43,15 +43,30 @@ export const TicketItem = ({ ticket, isDetail }: TicketProps) => {
     </Button>
   );
 
-  const deleteButton = (
-    <form action={deleteTicket.bind(null, ticket?.id as string)}>
-      <Button variant="outline" size="icon">
-        <FontAwesomeIcon
-          icon={faTrash}
-          style={{ width: "1rem", height: "1rem" }}
-        />
-      </Button>
-    </form>
+  // const deleteButton = (
+  //   <form action={deleteTicket.bind(null, ticket?.id as string)}>
+  //     <Button variant="outline" size="icon">
+  //       <FontAwesomeIcon
+  //         icon={faTrash}
+  //         style={{ width: "1rem", height: "1rem" }}
+  //       />
+  //     </Button>
+  //   </form>
+  // );
+
+  const moreMenu = (
+    <TicketMoreMenu
+      ticket={ticket as Ticket}
+      trigger={
+        <Button variant="outline" size="icon" asChild>
+          <FontAwesomeIcon
+            icon={faCaretDown}
+            className="w-4 h-4"
+            style={{ width: "36px", height: "36px" }}
+          />
+        </Button>
+      }
+    />
   );
 
   return (
@@ -83,13 +98,14 @@ export const TicketItem = ({ ticket, isDetail }: TicketProps) => {
       <div className="flex  flex-col gap-y-1">
         {!isDetail ? (
           <>
-            {deleteButton}
             {editButton}
+            {moreMenu}
           </>
         ) : (
           <>
             {buttonVariants}
             {editButton}
+            {moreMenu}
           </>
         )}
       </div>

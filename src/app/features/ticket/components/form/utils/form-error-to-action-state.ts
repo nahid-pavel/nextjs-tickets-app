@@ -15,9 +15,15 @@ export const ErrorActionState: ActionState = {
   timeStamp: Date.now(),
 };
 
+export const EMPTY_ACTION_STATE: ActionState = {
+  message: "",
+  fieldErrors: {},
+  timeStamp: Date.now(),
+};
+
 export const fromErrorToActionState = (
   error: unknown,
-  formData: FormData
+  formData?: FormData
 ): ActionState => {
   if (error instanceof ZodError) {
     return {

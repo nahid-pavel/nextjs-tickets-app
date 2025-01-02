@@ -25,3 +25,9 @@ export const TICKET_ICONS = {
     />
   ),
 };
+
+export enum TICKET_STATUS_LABELS {
+  OPEN = "OPEN",
+  DONE = "DONE",
+  IN_PROGRESS = "IN PROGRESS",
+}

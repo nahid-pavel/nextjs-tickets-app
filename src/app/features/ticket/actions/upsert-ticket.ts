@@ -38,8 +38,6 @@ export const upsertTicket = async (
       bounty: data.bounty * 10000,
     };
 
-    console.debug({ dbData, data });
-
     await prisma.ticket.upsert({
       where: {
         id: id || "",
