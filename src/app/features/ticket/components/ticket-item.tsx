@@ -10,7 +10,7 @@ import clsx from "clsx";
 import Link from "next/link";
 
 import React from "react";
-import { Tickets } from "../types";
+
 import { TICKET_ICONS } from "../constants";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -18,11 +18,19 @@ import {
   faEdit,
   faExternalLink,
 } from "@fortawesome/free-solid-svg-icons";
-import { Ticket, TicketStatus } from "@prisma/client";
+import { Prisma, Ticket, TicketStatus } from "@prisma/client";
 import { TicketMoreMenu } from "./TiketMoreMenu";
 
-interface TicketProps {
-  ticket: Tickets;
+export interface TicketProps {
+  ticket: Prisma.TicketGetPayload<{
+    include: {
+      User: {
+        select: {
+          username: true;
+        };
+      };
+    };
+  }>;
   isDetail?: boolean;
 }
 
@@ -93,7 +101,9 @@ export const TicketItem = ({ ticket, isDetail }: TicketProps) => {
             {ticket?.content}
           </span>
         </CardContent>
-        <CardFooter></CardFooter>
+        <CardFooter>
+          {ticket?.deadline} by {ticket?.User?.username}
+        </CardFooter>
       </Card>
       <div className="flex  flex-col gap-y-1">
         {!isDetail ? (

@@ -11,6 +11,7 @@ import {
 import { z } from "zod";
 import { redirect } from "next/navigation";
 import { setCookieByKey } from "@/app/actions/cookies";
+import { getAuth } from "../../auth/getAuth";
 
 const UpsertTicketSchema = z.object({
   title: z.string().min(1).max(191),
@@ -24,16 +25,27 @@ export const upsertTicket = async (
   actionState: { message: string; payload?: FormData },
   formData: FormData
 ) => {
+  const { user } = await getAuth();
+
+  if (!user) {
+    redirect("/sign-in");
+  }
   try {
     const data = UpsertTicketSchema.parse({
       title: formData.get("title") as string,
       content: formData.get("content") as string,
-      deadline: formData.get("deadline"),
+      deadline: formData.get("deadline") as string,
       bounty: formData.get("bounty"),
-    });
+    }) as {
+      title: string;
+      content: string;
+      deadline: string;
+      bounty: number;
+    };
 
     const dbData = {
       ...data,
+      userId: user.id,
 
       bounty: data.bounty * 10000,
     };
@@ -43,8 +55,6 @@ export const upsertTicket = async (
         id: id || "",
       },
       update: dbData,
-      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-      // @ts-expect-error
 
       create: dbData,
     });

@@ -28,7 +28,7 @@ export const CompactCard = ({
         <CardDescription>{description}</CardDescription>
       </CardHeader>
       <CardContent>{content}</CardContent>
-      {footer && <CardFooter>{content}</CardFooter>}
+      {footer && <CardFooter>{footer}</CardFooter>}
     </Card>
   );
 };

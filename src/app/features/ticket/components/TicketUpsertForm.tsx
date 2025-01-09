@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@radix-ui/react-label";
 
-import React, { useActionState, useRef } from "react";
+import React, { cloneElement, useActionState, useRef } from "react";
 
 import { Input } from "@/components/ui/input";
 import { Ticket } from "@prisma/client";
@@ -20,13 +20,28 @@ interface UpdateParams {
   ticket?: Ticket | null;
 }
 
-export const SubmitButton = ({ label }: { label: string }) => {
+export const SubmitButton = ({
+  label,
+  icon,
+}: {
+  label: string;
+  icon?: React.ReactElement;
+}) => {
   const { pending } = useFormStatus();
   return (
-    <Button type="submit" disabled={pending}>
-      {pending && <FontAwesomeIcon icon={faSpinner} />}
-      {label}
-    </Button>
+    <>
+      <Button type="submit" disabled={pending}>
+        {pending && <FontAwesomeIcon icon={faSpinner} />}
+        {label}
+        {pending ? null : icon ? (
+          <span>
+            {cloneElement(icon, {
+              className: "h-4 w-4",
+            })}
+          </span>
+        ) : null}
+      </Button>
+    </>
   );
 };
 
