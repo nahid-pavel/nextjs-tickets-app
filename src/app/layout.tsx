@@ -5,6 +5,7 @@ import { ThemeProvider } from "@/components/theme/theme-provider";
 import { Header } from "@/components/Header";
 import { Toaster } from "sonner";
 import { RedirectToast } from "./features/ticket/components/redirect-toast";
+import { SideBar } from "./features/ticket/components/sidebar/components/sidebar";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -34,9 +35,13 @@ export default function RootLayout({
       >
         <ThemeProvider>
           <Header />
-          <main className="py-24 px-8 bg-secondary/20 min-h-screen flex-1 flex flex-col overflow-y-auto overflow-x-hidden">
-            {children}
-          </main>
+          <div className="flex h-screen overflow-hidden border-collapse">
+            <SideBar />
+            <main className="py-24 px-8 bg-secondary/20 min-h-screen flex-1 flex flex-col overflow-y-auto overflow-x-hidden">
+              {children}
+            </main>
+          </div>
+
           <Toaster expand />
           <RedirectToast />
         </ThemeProvider>

@@ -5,11 +5,13 @@ import { TicketList } from "../features/ticket/components/ticket-list";
 import { LoadingSpinner } from "../features/ticket/components/LoadingSpinner";
 import { CompactCard } from "../features/ticket/components/CompactCard";
 import { UpsertTicket } from "../features/ticket/components/TicketUpsertForm";
+import { getAuth } from "../features/auth/getAuth";
 
 const Tickets = async () => {
+  const { user } = await getAuth();
   return (
     <div className="flex flex-1 flex-col gap-y-8">
-      <Heading title="Tickets Page" description="This is Ticket Page" />
+      <Heading title="My Tickets" description="This is Ticket Page" />
       <CompactCard
         className="w-full max-w-[450px] self-center"
         title="Create Ticket"
@@ -18,7 +20,7 @@ const Tickets = async () => {
       />
 
       <Suspense fallback={<LoadingSpinner />}>
-        <TicketList />
+        <TicketList userId={user.id} />
       </Suspense>
     </div>
   );

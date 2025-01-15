@@ -20,6 +20,8 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { Prisma, Ticket, TicketStatus } from "@prisma/client";
 import { TicketMoreMenu } from "./TiketMoreMenu";
+import { getAuth } from "../../auth/getAuth";
+import { isOwner } from "../../auth/utils/isOwner";
 
 export interface TicketProps {
   ticket: Prisma.TicketGetPayload<{
@@ -34,7 +36,9 @@ export interface TicketProps {
   isDetail?: boolean;
 }
 
-export const TicketItem = ({ ticket, isDetail }: TicketProps) => {
+export const TicketItem = async ({ ticket, isDetail }: TicketProps) => {
+  const { user } = await getAuth();
+  const isTicketOwner = isOwner(user, ticket);
   const buttonVariants = (
     <Button variant="outline" asChild size="icon">
       <Link href={`/tickets/${ticket?.id}`}>
@@ -43,13 +47,13 @@ export const TicketItem = ({ ticket, isDetail }: TicketProps) => {
     </Button>
   );
 
-  const editButton = (
+  const editButton = !!isTicketOwner ? (
     <Button variant="outline" asChild size="icon">
       <Link prefetch href={`/tickets/${ticket?.id}/edit`}>
         <FontAwesomeIcon icon={faEdit} />
       </Link>
     </Button>
-  );
+  ) : null;
 
   // const deleteButton = (
   //   <form action={deleteTicket.bind(null, ticket?.id as string)}>
@@ -62,7 +66,7 @@ export const TicketItem = ({ ticket, isDetail }: TicketProps) => {
   //   </form>
   // );
 
-  const moreMenu = (
+  const moreMenu = !!isTicketOwner ? (
     <TicketMoreMenu
       ticket={ticket as Ticket}
       trigger={
@@ -75,7 +79,7 @@ export const TicketItem = ({ ticket, isDetail }: TicketProps) => {
         </Button>
       }
     />
-  );
+  ) : null;
 
   return (
     <div

@@ -3,8 +3,9 @@ import { TicketItem } from "./ticket-item";
 import { getTickets } from "../queries/getTickets";
 import { Prisma } from "@prisma/client";
 
-export const TicketList = async () => {
-  const tickets = await getTickets();
+export const TicketList = async ({ userId }: { userId?: string }) => {
+  const tickets = await getTickets(userId);
+
   return (
     <>
       {" "}

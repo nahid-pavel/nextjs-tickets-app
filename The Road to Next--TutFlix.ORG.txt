@@ -1,0 +1,215 @@
+ Welcome to The Road to Next
+ Software to create Software
+ Visual Studio Code (VSCode)
+ External Terminal (Optional)
+ Browser
+ Node
+ NPM
+ Manual setup in Next
+ JSX
+ Components
+ Props
+ Styling
+ Interactions
+ State
+ Composition
+ File Extraction
+ Outro
+ What are pitfalls?
+ Restarting Things
+ Wrong (Auto) Imports
+ npm install --force
+ Breaking Changes
+ create-next-app
+ Next 15 & React 19
+ Exploring the Starter
+ Git & GitHub
+ Deploy
+ Exploring the finished Project
+ Script
+ Import Sort
+ Pages
+ Static and Dynamic Routes [B]
+ Link Components
+ Absolute Imports
+ Path Constants
+ Layout
+ Script
+ const Assertions
+ Tailwind CSS [C]
+ Tailwind CSS in Next
+ Conditional Style
+ Animations with Tailwind
+ SVGs
+ Setup [B]
+ Button
+ Card
+ Separator
+ Icons [C]
+ Theming
+ Heading
+ Header
+ Placeholder
+ Intro [B]
+ Extract
+ Modify
+ Reuse
+ Recap
+ Implementation 
+ Data Fetching in Client Components
+ Characteristics of Client Components
+ Client-Server Boundary [C]
+ Client-Server Composition
+ Data Fetching in Server Components
+ SSR vs Server Components
+ Server-Side Rendering
+ Streaming
+ Suspense
+ Introduction
+ Loading Route
+ Error Route
+ Error Boundary (Optional)
+ Not Found Route
+ Nearest Boundary Bubbling
+ Connect to Database
+ Prisma
+ Prisma Schema
+ Seeding the Database
+ Prisma Studio
+ Prisma Client
+ Database Queries
+ ORM generated Types
+ Typed APIs (Optional)
+ Server Actions in Client Components
+ Server Actions in Server Components
+ redirect
+ Development vs Production
+ Router Cache
+ Full Route Cache
+ Static vs Dynamic Rendering
+ Time-Based Cache (ISR)
+ On-Demand Caching (ISR)
+ Where do we cache?
+ Request Memoization
+ Generate Static Params (Optional)
+ Recap
+ Create Form 
+ Configuration over Composition (Software Craftsmanship)
+ Edit Form [B] 
+ DRY with Abstractions (Software Craftsmanship)
+ Progressive Enhancement
+ useTransition
+ useFormStatus
+ useActionState
+ Form Validation
+ Form Reset
+ Error Handling
+ Field Errors in Forms
+ Premature Optimization (Software Craftsmanship)
+ Action Callbacks 
+ Debugging (Software Craftsmanship)
+ Toast Feedback
+ Form Abstraction
+ Cookie API [B]
+ Set Cookie [B]
+ Read Cookie [B]
+ Pages vs Layouts
+ Layouts vs Templates
+ Schema Changes 
+ Working with Currencies (Bonus) 
+ Working with Dates (Bonus) 
+ Close DatePicker (Controlled Component)
+ Reset DatePicker (key)
+ Exposing Callback Handlers
+ Reset DatePicker (useImperativeHandle)
+ Dropdown Component
+ Ticket Status (Read)
+ Ticket Status (Write)
+ Update Toast Feedback
+ Confirm Dialog
+ Confirm Dialog from Dropdown (Advanced)
+ Delete Toast Feedback
+ Development vs Production
+ Vercel
+ Environment Variables
+ Other Environment Variables
+ Lucia [B]
+ Paths for Authentication
+ Sign Up 
+ Sign In
+ Regression Bugs (Software Craftsmanship)
+ Authentication Status
+ Sign Out
+ Header (Server Component)
+ Header (Client Component)
+ The Authentication Flicker
+ One-to-Many Relation
+ Referential Actions
+ Non-Nullable Relation
+ Relation Queries
+ Exclude Sensitive Information
+ Protected Routes
+ Ownership
+ Protected APIs
+ Protected UI
+ All Tickets vs My Tickets
+ Sidebar
+ Authenticated Sidebar
+ Breadcrumbs
+ Tabs
+ Active Path (Fastest Levenshtein)
+ Account Dropdown
+ Route Groups
+ Private Folders
+ useSearchParams
+ searchParams [B]
+ Debounce Requests
+ Sort 
+ Typed Search Params [B]
+ useQueryState
+ useQueryStates
+ Composite Key
+ Mediator Components
+ URL State 
+ Offset-Based Pagination
+ Metadata in Pagination with Prop Drilling
+ Database Transactions
+ Interplay between Interactions (UX)
+ Dynamic Page Size
+ Route Handler
+ Route Params in Route Handler [B]
+ Search Params in Route Handler
+ Intro (with Challenge)
+ Many-to-One Relation
+ Read Comments 
+ Create Comment 
+ Delete Comment 
+ Sequential Data Fetching
+ Parallel Data Fetching
+ Explicit Client Components 
+ Implicit Client Components
+ Hydration Mismatch
+ Async Client Components
+ Client-Server Boundary
+ Client-Server Composition
+ “use client”;
+ “use server”;
+ Continuous Offset-Based Pagination
+ Initial State
+ Sliding Window
+ Client-Side State: Remove Comment
+ Client-Side State: Add Comment 
+ TypeScript Generics (Bonus)
+ Delete Feedback (Toast)
+ Delete Feedback (Button)
+ Cursor-Based Pagination (Timestamp)
+ Cursor-Based Pagination (Unique ID)
+ Deliberate Over-Fetching
+ TypeScript Generics (Bonus)
+ React Query Provider
+ useInfiniteQuery
+ initialData
+ Refetch (Option 1)
+ Invalidate Query (Option 2)
+ Infinite Scroll
+ Custom Domain

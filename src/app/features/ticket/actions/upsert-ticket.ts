@@ -12,6 +12,7 @@ import { z } from "zod";
 import { redirect } from "next/navigation";
 import { setCookieByKey } from "@/app/actions/cookies";
 import { getAuth } from "../../auth/getAuth";
+import { isOwner } from "../../auth/utils/isOwner";
 
 const UpsertTicketSchema = z.object({
   title: z.string().min(1).max(191),
@@ -31,6 +32,15 @@ export const upsertTicket = async (
     redirect("/sign-in");
   }
   try {
+    if (id) {
+      const ticket = await prisma.user.findUnique({
+        where: { id },
+      });
+
+      if (!ticket || !isOwner(user, ticket)) {
+        return toActionState("Error", "Not Authorized");
+      }
+    }
     const data = UpsertTicketSchema.parse({
       title: formData.get("title") as string,
       content: formData.get("content") as string,
