@@ -1,5 +1,5 @@
+import { LoadingSpinner } from "@/app/features/ticket/components/LoadingSpinner";
 import React from "react";
-import { LoadingSpinner } from "../features/ticket/components/LoadingSpinner";
 
 const Loading = () => {
   return <LoadingSpinner />;
