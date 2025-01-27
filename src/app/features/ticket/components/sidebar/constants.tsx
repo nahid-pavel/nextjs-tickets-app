@@ -21,7 +21,7 @@ export const navItems: NavBaritems[] = [
     separator: true,
     title: "Account",
     icon: <FontAwesomeIcon icon={faCreditCard} />,
-    href: "/accounts",
+    href: "/accounts/profile",
   },
 ];
 

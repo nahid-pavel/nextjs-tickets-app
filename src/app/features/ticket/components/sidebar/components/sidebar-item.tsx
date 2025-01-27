@@ -5,19 +5,18 @@ import { cn } from "@/lib/utils";
 import { Separator } from "@radix-ui/react-separator";
 
 import { closedClassName } from "../constants";
-import { usePathname } from "next/navigation";
 import Link from "next/link";
 
 type SidebarItemProps = {
   open: boolean;
   //   isActive: boolean;
   navItem: NavBaritems;
+  isActive: boolean;
 };
 
-export const SidebarItem = ({ open, navItem }: SidebarItemProps) => {
-  const pathname = usePathname();
+export const SidebarItem = ({ open, navItem, isActive }: SidebarItemProps) => {
+  // const pathname = usePathname();
 
-  const isActive = pathname === navItem.href;
   return (
     <>
       {navItem.separator && <Separator />}

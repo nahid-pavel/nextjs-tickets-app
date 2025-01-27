@@ -70,10 +70,15 @@ export default {
             transform: "translateY(0)",
           },
         },
+        "sidebar-from-left": {
+          from: { transform: "translateX(-100%)" },
+          to: { transform: "translateX(0)" },
+        },
       },
       animation: {
         "fade-in-from-top": "fade-in-from-top 0.3s ease-out",
         "header-from-top": "fade-in-from-top 0.3s ease-out",
+        "sidebar-from-left": "sidebar-from-left 0.5s ease-out",
       },
       borderRadius: {
         lg: "var(--radius)",
