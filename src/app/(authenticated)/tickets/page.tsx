@@ -6,13 +6,11 @@ import { CompactCard } from "@/app/features/ticket/components/CompactCard";
 import { UpsertTicket } from "@/app/features/ticket/components/TicketUpsertForm";
 import { LoadingSpinner } from "@/app/features/ticket/components/LoadingSpinner";
 import { TicketList } from "@/app/features/ticket/components/ticket-list";
-import {
-  ParsedSearchParams,
-  searchParamsCache,
-} from "@/app/features/ticket/types";
+import { searchParamsCache } from "@/app/features/ticket/types";
+import { SearchParams } from "nuqs";
 
 type TicketPageProps = {
-  searchParams: ParsedSearchParams;
+  searchParams: Promise<SearchParams>;
 };
 
 const Tickets = async ({ searchParams }: TicketPageProps) => {
@@ -30,7 +28,7 @@ const Tickets = async ({ searchParams }: TicketPageProps) => {
       <Suspense fallback={<LoadingSpinner />}>
         <TicketList
           userId={user.id}
-          searchParams={searchParamsCache.parse(searchParams)}
+          searchParams={searchParamsCache.parse(await searchParams)}
         />
       </Suspense>
     </div>

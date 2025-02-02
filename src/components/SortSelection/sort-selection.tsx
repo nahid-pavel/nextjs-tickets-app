@@ -1,7 +1,5 @@
 "use client";
 
-import { useQueryState } from "nuqs";
-
 import React from "react";
 import {
   Select,
@@ -10,33 +8,47 @@ import {
   SelectTrigger,
   SelectValue,
 } from "../ui/select";
-import { sortParser } from "@/app/features/ticket/types";
 
-type Options = {
+export type SortSelectOptions = {
   label?: string;
-  value?: string;
+  sortKey: string;
+  sortValue?: string;
+};
+
+type SortObject = {
+  sortKey: string;
+  sortValue?: string;
 };
 
 type sortSelectProps = {
-  defaultValue?: string;
-  options: Options[];
+  options: SortSelectOptions[];
+  value?: SortObject;
+  onChange?: (sort: SortObject) => void;
 };
 
-const SortSelect = ({ defaultValue, options }: sortSelectProps) => {
-  const [sort, setSort] = useQueryState("sort", sortParser);
-
-  const handleSort = (value: string) => {
-    setSort(value);
+const SortSelect = ({ options, value, onChange }: sortSelectProps) => {
+  const handleSort = (compositeKey: string) => {
+    const [sortKey, sortValue] = compositeKey.split("_");
+    onChange({
+      sortKey,
+      sortValue,
+    });
   };
 
   return (
-    <Select defaultValue={sort ?? defaultValue} onValueChange={handleSort}>
+    <Select
+      defaultValue={value.sortKey + "_" + value.sortValue}
+      onValueChange={handleSort}
+    >
       <SelectTrigger>
         <SelectValue />
       </SelectTrigger>
       <SelectContent>
-        {options?.map((item, index) => (
-          <SelectItem key={index} value={item?.value}>
+        {options?.map((item) => (
+          <SelectItem
+            key={item?.sortKey + item?.sortValue}
+            value={item?.sortKey + "_" + item?.sortValue}
+          >
             {item?.label}
           </SelectItem>
         ))}
